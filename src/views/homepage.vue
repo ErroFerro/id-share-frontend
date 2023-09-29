@@ -1,50 +1,44 @@
 <script setup>
-
-
-
-
-/* ESEMPIO IN JAVASCRIPT*/
-//import router from '../router';
-//router.push("/file.vue")
-
-/*
- */
-
-
+import SpidBtn from '../components/spidbtn.vue';
+// ESEMPIO IN JAVASCRIPT
+// import router from '../router';
+// router.push("/file.vue")
 </script>
 
 <template>
 
   <div id="container">
-
-<Image  src="src\pics\logo.png" alt="Image" width="180" />
+    <Image  src="src\pics\logo.png" alt="Image" width="180" />
+    
     <div id="titoli">
       <h1 style="margin-bottom: 10px;" >IBE SHARING</h1>
       <h3 style="margin-top: 10px;">Mobile Service</h3>
     </div>
-    
-        <div id="divbuttons">
-          <button id="Share" @click="$router.push('choose')" >
-        <img src="src\pics\share.png" alt="share image" >
-        Condividi un file
-        </button>
 
-        <button id="Login" @click="$router.push('login')">
-          <img src="src\pics\login.png" alt="share image">
-          Login
-        </button>
-      </div>
+    <button id="Share" @click="$router.push('choose')" >
+      <img src="src\pics\share.png" alt="share image" >
+      Condividi un File
+    </button>
+
+    <button  id="Login" @click="$router.push('login')">
+      <img src="src\pics\Gpic2.png" alt="share image">
+      Entra con Google
+    </button>
+
+    <div style="margin-top: 10px;">
+      <SpidBtn/>
     </div>
+  </div>
+
 </template>
 <style scoped>
+
+
 
 /*Buttons*/
 #divbuttons{
   margin-bottom: 300px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  height: 300px;
+  height: 100px;
   margin-top: 30px;
 }
 button{
@@ -52,7 +46,7 @@ button{
   flex-wrap: nowrap;
   align-items: center;
   text-align: center;
-  margin: 20px 30px;
+  /* margin: 20px 30px; */
   width: 80%;
   height: 80px;
   border: 1px solid transparent;
@@ -62,13 +56,17 @@ button{
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: white;
 }
 
 #Share{
   background-color: #38B6FF;
+  width: 80%;
+  margin-top:60px;
 }
 
 #Login{
+  margin-top: 60px;
   background-color: #004AAD;
 }
 
@@ -81,8 +79,9 @@ button img {
 }
 
 /*Titles, h1, h2*/
+
 #titoli{
-  margin-top: 80px;
+  margin-top:25px;
 }
 
 h1 {
@@ -101,23 +100,20 @@ h3 {
   font-family: inherit;
   padding-top: 3px;
   border-radius: 5px;
+  margin: 0;
+
 }
 
 /*others*/
-#logo {
-  margin-top: 150px;
 
-}
-
-/* #container{
-  border: 3px rgb(0, 0, 0) solid;
-  background-color: #FFFFFF;
-  border-radius: 20px;
+#container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 415px;
-  height: 900px;
-  margin: 0;
+  margin: 20px auto;
   padding: 0;
-} */
-
+}
 
 </style>

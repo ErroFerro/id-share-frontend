@@ -1,6 +1,5 @@
 <script setup>
 import {ref} from 'vue';
-import SpidBtn from '../components/SpidBtn.vue';
 
 let comment=ref("");
 let emailfrom=ref("");
@@ -79,7 +78,6 @@ let titolo=ref("");
             "
           />
     </div>
-    <SpidBtn/>
 
     <button id="home" @click="$router.push('homepage')" >
       <img src="src\pics\home.png" alt="share image">
@@ -144,8 +142,8 @@ button{
   cursor: pointer;
   transition: border-color 0.25s;
   color: white;
-
 }
+
 button img {
   border-radius: 50px;  
   width: 70px;
