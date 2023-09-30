@@ -1,21 +1,16 @@
-<script setup>
-</script>
-
+<script setup></script>
 
 <template>
-<div id="container">
-  <button id="home" @click="$router.push('homepage')" >
-    <img src="src\pics\home.png" alt="share image">
-    Home
-  </button>
-</div>
-
+  <div id="container">
+    <button id="home" @click="$router.push('homepage')">
+      <img src="/img/home.png" alt="share image" />
+      Home
+    </button>
+  </div>
 </template>
 
-
 <style scoped>
-
-button{
+button {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -31,4 +26,4 @@ button{
   transition: border-color 0.25s;
   color: white;
 }
-</style> 
+</style>
