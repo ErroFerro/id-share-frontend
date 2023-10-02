@@ -1,5 +1,5 @@
 <script setup>
-import SpidBtn from "../components/spidbtn.vue";
+import SpidBtn from "../components/SpidBtn.vue";
 // ESEMPIO IN JAVASCRIPT
 // import router from '../router';
 // router.push("/file.vue")
@@ -30,6 +30,11 @@ function redirectToOAuth() {
       <img src="/img/Gpic.png" alt="share image" />
       Entra con Google
     </button>
+    
+    <button id="Login" @click="$router.push('fileviewer')">
+      TEST FILEVIEWER
+    </button>
+
     <SpidBtn />
   </div>
 </template>

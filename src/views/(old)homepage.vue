@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref, onMounted } from "vue";  //utilizzo ref e onload
 import { Buffer } from "buffer";
 globalThis.Buffer = Buffer;  //pre wasm cifratura
@@ -136,4 +136,4 @@ input{
 }
 
 
-</style>
+</style> -->

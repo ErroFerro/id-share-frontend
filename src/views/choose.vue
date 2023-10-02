@@ -6,6 +6,8 @@ let emailfrom = ref("");
 let emailto = ref("");
 let cf = ref("");
 let titolo = ref("");
+
+//creare un bottone che solo dopo aver scelto il file lo carica da qualche parte
 </script>
 
 <template>
