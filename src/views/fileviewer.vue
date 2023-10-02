@@ -42,13 +42,13 @@ const downloadFile=()=>{
   document.body.removeChild(a);
 }
 
-
 const columns = [
     { field: 'nome', header: 'Nome' },
     { field: 'contenuto', header: 'Contenuto' },
     { field: 'commento', header: 'Commento' },
     { field: 'from', header: 'From' },
-    { field: 'to', header: 'To' }
+    { field: 'to', header: 'To' },
+    { field: 'date', header: 'Date'}
 ];
 </script>
 
@@ -57,25 +57,36 @@ const columns = [
 <!-- IMPLEMENTARE:
 -CLICK EVIDENZIA BARRA
 -SCORRERE VERTICALE
--RICERCA
--SORT
 -->
 
   <div id="container">
     <div id="table">
       <DataTable 
-        v-model:selection="selectedProduct"  
+        v-model:selection="selectedProduct"
         :value="files" 
         selectionMode="single" 
         dataKey="id" 
         :metaKeySelection="false"
         @rowSelect="onRowSelect"
         @rowUnselect="onRowUnselect"
-        tableStyle="width: 500px"
+        tableStyle="width: 600px"
         :rowClassName="selectedRowClass"
+        removableSort
+        scrollable
+        scrollHeight="400px" 
         >
 
-        <Column  v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+         <!-- TABELLA DINAMICA -->
+         <Column sortable  v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+        
+
+        <!-- STESSA TABELLA MA STATICA
+         <Column field="nome" header="Name"></Column>
+        <Column field="contenuto" header="Country"></Column>
+        <Column field="commento" header="Representative"></Column>
+        <Column field="from" header="Company"></Column>
+        <Column field="to" header="Company"></Column>
+        <Column field="date" header="Company"></Column> -->
       </DataTable>
     </div>
   
@@ -98,7 +109,7 @@ const columns = [
 } 
 
 #container {
-  width: 415px;
+  width: 800px;
   margin: 20px auto;
   padding: 0;
   display: flex;
