@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import PrimeVue from "primevue/config";
+
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
@@ -9,9 +10,14 @@ import Column from 'primevue/column';
 import Image from 'primevue/image';
 import InputText from 'primevue/inputtext';
 import FileUpload from 'primevue/fileupload';
+import Card from 'primevue/card';
+
+import 'primevue/resources/themes/bootstrap4-light-blue/theme.css';
+
 
 const app = createApp(App);
 
+app.component("Card",Card);
 app.component("DataTable",DataTable);
 app.component("Column",Column);
 app.component("InputText",InputText);

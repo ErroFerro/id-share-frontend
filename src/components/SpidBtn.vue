@@ -14,7 +14,7 @@ const idpButtonVisible = ref(false);
   </button>
 
   <div
-    style="margin-top: 150%"
+    style="margin-top: 100%"
     v-if="idpButtonVisible"
     id="spid-idp-button-medium-get"
     class="spid-idp-button spid-idp-button-tip spid-idp-button-relative"

@@ -9,19 +9,20 @@ let SelectedFileName= ref("");
 let contenutoDownload=ref("");
 
 const selectedProduct= ref();
-const selectedRowClass= ref("");
+// const selectedRowClass= ref("");
 
 
 const onRowSelect = (event) => {
     SelectedFileName=event.data.nome;
     contenutoDownload=event.data.contenuto;
-    selectedRowClass.value='selected-row';
+    // selectedRowClass='selected-row';
+    // console.log(selectedRowClass)
     mostra=true;
 };
 
 const onRowUnselect = (event) => {
     mostra=false;
-    selectedRowClass.value = '';
+    // selectedRowClass.value = '';
 };
 
 
@@ -43,7 +44,7 @@ const downloadFile=()=>{
 }
 
 const columns = [
-    { field: 'nome', header: 'Nome' },
+    { field: 'nome', header: 'Nome', },
     { field: 'contenuto', header: 'Contenuto' },
     { field: 'commento', header: 'Commento' },
     { field: 'from', header: 'From' },
@@ -69,15 +70,14 @@ const columns = [
         :metaKeySelection="false"
         @rowSelect="onRowSelect"
         @rowUnselect="onRowUnselect"
-        tableStyle="width: 600px"
-        :rowClassName="selectedRowClass"
+        tableStyle="width: 700px"
         removableSort
         scrollable
         scrollHeight="400px" 
         >
 
          <!-- TABELLA DINAMICA -->
-         <Column sortable  v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+         <Column class="p-column-title" sortable  v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
         
 
         <!-- STESSA TABELLA MA STATICA
@@ -103,14 +103,15 @@ const columns = [
 <style scoped>
 
  #table{
-  margin: 0 auto;
-  border: 1px solid black;
+  border: 5px solid var(--blue-primary);
+  border-radius: 5px;
   padding: 0;
+
 } 
 
 #container {
-  width: 800px;
-  margin: 20px auto;
+  width: 415px;
+  margin: 30px auto;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -126,6 +127,19 @@ const columns = [
   background-color: var(--blue-primary);
 }
 
+@media (min-width: 800px){
+
+            .container{
+                width: 700px;
+            }
+            li{
+                padding: 20px 30px;
+                margin-right: 15px;
+            }
+            menu{
+                font-size: 30px;
+            }
+        }
 
 
 </style>

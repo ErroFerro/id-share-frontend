@@ -1,5 +1,6 @@
 <script setup>
 import SpidBtn from "../components/SpidBtn.vue";
+
 // ESEMPIO IN JAVASCRIPT
 // import router from '../router';
 // router.push("/file.vue")
