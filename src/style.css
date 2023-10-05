@@ -30,7 +30,7 @@ button {
   text-align: center;
   margin-top: 5%;
   width: 80%;
-  height: 10%;
+  height: 20%;
   border: 1px solid transparent;
   border-radius: 50px;
   font-size: 1.3em;
@@ -50,4 +50,19 @@ button img {
 .titoli {
   color: var(--blue-secondary);
   margin: 10px auto;
+}
+
+.p-card-content{ /* card template #content*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin:0 auto;
+}
+
+hr {
+  border: 0.5px solid lightblue;
+  width: 80%; 
+  border-radius: 5px;
 }

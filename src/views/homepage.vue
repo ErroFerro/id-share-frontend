@@ -1,5 +1,6 @@
 <script setup>
 import SpidBtn from "../components/SpidBtn.vue";
+import Card from 'primevue/card';
 
 // ESEMPIO IN JAVASCRIPT
 // import router from '../router';
@@ -12,49 +13,82 @@ function redirectToOAuth() {
 </script>
 
 <template>
-  <div id="container">
-    <Image src="/img/logo.png" alt="Image" width="180" />
+  <div id="background">
 
-    <div class="titoli">
-      <h1 style="margin-bottom: 0px">IBE SHARING</h1>
-      <h3>Mobile Service</h3>
-    </div>
-
-    <button id="Share" @click="$router.push('choose')">
-      <img src="/img/share.png" alt="share image" />
-      Condividi un File
-    </button>
-
-    <hr />
-
-    <button id="Login" @click="redirectToOAuth">
-      <img src="/img/Gpic.png" alt="share image" />
-      Entra con Google
-    </button>
+    <!-- <Image src="/img/logo.png" alt="Image" width="180" /> -->
+    <img class="logo" src="/img/logo.png" alt="Image" width="250"  />
     
-    <button id="Login" @click="$router.push('fileviewer')">
-      TEST FILEVIEWER
-    </button>
+    <div id="container">
 
-    <SpidBtn />
+      <Card style="border-radius: 25px; height: 650px;" >
+        
+        <template #title class="titoli">
+            <h1 style="margin-bottom: 0px">IBE SHARING</h1>
+            <h3>Mobile Service</h3>
+        </template>
+        
+        <template #content>
+
+            <button id="Share" @click="$router.push('choose')">
+            <img src="/img/share.png" alt="share image" />
+            Condividi un File
+          </button>
+
+          <hr />
+
+          <button id="Login" @click="redirectToOAuth">
+            <img src="/img/Gpic.png" alt="share image" />
+            Entra con Google
+          </button>
+  
+          <!-- <button id="Login" @click="$router.push('fileviewer')">
+            TEST FILEVIEWER
+          </button> -->
+
+          <SpidBtn />
+
+        </template>
+         
+      </Card>
+    </div>
   </div>
 </template>
 <style scoped>
+
+#background{
+  display: flex;
+  flex-direction: column;
+  background-image: url("../assets/choosebackgroundmobile.png");
+  background: cover;
+  background-size: 100%;
+  background-repeat:no-repeat;
+  background-position-x: left ;
+  height: 100vh;
+}
+
 #container {
-  width: 415px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:500px;
+  padding: 0;
+  margin:0 auto;
+  
+
+  /* width: 415px;
   margin: 20px auto;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
+
 hr {
-  border: 0.5px solid lightblue;
   margin: 10% 1% 5% 1%;
-  border-radius: 5px;
-  width: 80%;
 }
 #Share {
   background-color: var(--blue-primary);
@@ -82,4 +116,28 @@ h3 {
   text-align: center;
   padding-top: 3px;
 }
+
+.logo{   /** si puo mettere in style.css? */
+  margin: 20px auto;
+  border-radius: 40px;
+}
+
+
+@media (min-width: 1050px){  /* mobilefirst */
+
+            #container{
+              margin: 50px;
+            }
+            
+            #background{
+              display: flex;
+              flex-direction: column;
+              background-image: url("../assets/choosebackground.png");
+              background: cover;
+              background-size: cover;
+              background-repeat: no-repeat;
+              height: 100vh;
+            }
+
+        }
 </style>

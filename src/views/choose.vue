@@ -19,78 +19,75 @@ let titolo = ref("");
 
   
     <div id="container">
-
-      <Card style="border-radius: 25px;" >
-        <template #title>
-
-          <h1 class="titoli">UPLOAD & SHARE</h1>
-
+      <Card style="border-radius: 25px; height: 650px;"  >
+        <template #title class="titoli">
+          <h1 >UPLOAD & SHARE</h1>
         </template>
 
         <template #content>
-          <div class="divinputs">  
+            <div class="divinputs">  
 
-            <span class="p-float-label">
-              <InputText class="inputtext" id="emailto" v-model="emailto" />
-              <label for="emailto">Email ricevente</label>
-            </span>
+              <span class="p-float-label">
+                <InputText class="inputtext" id="emailto" v-model="emailto" />
+                <label for="emailto">Email ricevente</label>
+              </span>
 
-            <span class="p-float-label">
-              <InputText class="inputtext" id="emailfrom" v-model="emailfrom" />
-              <label for="emailfrom">La tua email</label>
-            </span>
+              <span class="p-float-label">
+                <InputText class="inputtext" id="emailfrom" v-model="emailfrom" />
+                <label for="emailfrom">La tua email</label>
+              </span>
 
-            <span class="p-float-label">
-              <InputText class="inputtext" id="cf" v-model="cf" />
-              <label for="cf">C.F. ricevente</label>
-            </span>
+              <span class="p-float-label">
+                <InputText class="inputtext" id="cf" v-model="cf" />
+                <label for="cf">C.F. ricevente</label>
+              </span>
 
-            <span class="p-float-label">
-              <InputText class="inputtext" id="title" v-model="titolo" />
-              <label for="title">Titolo</label>
-            </span>
+              <span class="p-float-label">
+                <InputText class="inputtext" id="title" v-model="titolo" />
+                <label for="title">Titolo</label>
+              </span>
 
-            <span class="p-float-label">
-              <InputText class="inputtext" id="comment" v-model="comment" />
-              <label for="comment">Commento</label>
-            </span>
+              <span class="p-float-label">
+                <InputText class="inputtext" id="comment" v-model="comment" />
+                <label for="comment">Commento</label>
+              </span>
 
-          </div>
+            </div>
 
-          <div style="text-align: center; width: 100%; margin: 0; padding: 0;">
-            <FileUpload
-              mode="basic"
-              :auto="false"
-              :customUpload="true"
-              :maxFileSize="10000000000000"
-              @uploader="uploadFile($event)"
-              chooseLabel="Scegli file"
-              style="
-                display: flex;
-                flex-wrap: nowrap;
-                align-items: center;
-                text-align: center;
-                width: 80%;
-                height: 10%;
-                border-radius: 50px;
-                font-size: 1.3em;
-                cursor: pointer;
-                transition: 0.3s;
-                background-color: var(--blue-primary);
-                color: white;
-                padding: 1em;
-                margin: 0;
-                margin-top: 1.5em;
-              "
-            />
+            <div style="text-align: center; width: 100%; margin: 0; padding: 0;">
+              <FileUpload
+                mode="basic"
+                :auto="false"
+                :customUpload="true"
+                :maxFileSize="10000000000000"
+                @uploader="uploadFile($event)"
+                chooseLabel="Scegli file"
+                style="
+                  display: flex;
+                  flex-wrap: nowrap;
+                  align-items: center;
+                  text-align: center;
+                  width: 80%;
+                  height: 10%;
+                  border-radius: 50px;
+                  font-size: 1.3em;
+                  cursor: pointer;
+                  transition: 0.3s;
+                  background-color: var(--blue-primary);
+                  color: white;
+                  padding: 1em;
+                  margin: 1.5em auto;
+                "
+              />
 
-          </div>
+            </div>
 
-          <button  id="Home" @click="$router.push('homepage')">
-            <img src="/img/home.png" alt="share image" />
-            Home
-          </button>
+            <hr />
 
+            <button id="Home" @click="$router.push('homepage')">
+              <img src="/img/home.png" alt="share image" />
+              Home
+            </button>
         </template>
       </Card>
     </div>
@@ -121,12 +118,10 @@ let titolo = ref("");
   margin: 50px auto;
   
 }
-
 .logo{
   margin: 20px auto;
   border-radius: 40px;
 }
-
 
 .divinputs { 
   margin: 0;
@@ -137,7 +132,6 @@ let titolo = ref("");
   height: 300px;
   align-items: center;
 } 
-
 .inputtext {
   border: solid var(--blue-primary) 2px;
   border-radius: 50px;
@@ -164,14 +158,24 @@ span label {
 
 #Home {
   background-color: var(--blue-secondary);
+
 }
 
 #Home:hover {
   background-color: var(--blue-hover);
 }
 
+h1 {
+  color: var(--blue-secondary);
+  font-size: 2em;
+  text-align: center;
+  margin-top: 20px;
+}
 
-@media (min-width: 800px){  /* mobilefirst */
+
+
+
+@media (min-width:1050px){  /* mobilefirst */
             #container{
               margin: 50px;
             }
@@ -184,11 +188,6 @@ span label {
               background-repeat: no-repeat;
               height: 100vh;
             }
-            .logo{
-
-            }
-
-
 
         }
 
