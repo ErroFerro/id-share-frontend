@@ -75,8 +75,7 @@ h1 {
   font-size: 3em;
   font-weight: 700;
   text-align: center;
-  /* font-family: inherit;
-  border-radius: 5px; */
+
 }
 h3 {
   color: var(--blue-secondary);

@@ -12,93 +12,103 @@ let titolo = ref("");
 </script>
 
 <template >
+
   <div id="background">
 
+      <img class="logo" src="/img/logo.png" alt="Image" width="250"  />
 
-  <div id="container">
-    <Card>
-       <template #title>
-        <Image src="/img/logo.png" alt="Image" width="180" />
-        <h1 class="titoli">UPLOAD & SHARE</h1>
-      </template>
+  
+    <div id="container">
 
-      <template #content>
+      <Card style="border-radius: 25px;" >
+        <template #title>
 
-        <div class="divinputs">  
+          <h1 class="titoli">UPLOAD & SHARE</h1>
 
-          <span class="p-float-label">
-            <InputText class="inputtext" id="emailto" v-model="emailto" />
-            <label for="emailto">Email ricevente</label>
-          </span>
+        </template>
 
-          <span class="p-float-label">
-            <InputText class="inputtext" id="emailfrom" v-model="emailfrom" />
-            <label for="emailfrom">La tua email</label>
-          </span>
+        <template #content>
+          <div class="divinputs">  
 
-          <span class="p-float-label">
-            <InputText class="inputtext" id="cf" v-model="cf" />
-            <label for="cf">C.F. ricevente</label>
-          </span>
+            <span class="p-float-label">
+              <InputText class="inputtext" id="emailto" v-model="emailto" />
+              <label for="emailto">Email ricevente</label>
+            </span>
 
-          <span class="p-float-label">
-            <InputText class="inputtext" id="title" v-model="titolo" />
-            <label for="title">Titolo</label>
-          </span>
+            <span class="p-float-label">
+              <InputText class="inputtext" id="emailfrom" v-model="emailfrom" />
+              <label for="emailfrom">La tua email</label>
+            </span>
 
-          <span class="p-float-label">
-            <InputText class="inputtext" id="comment" v-model="comment" />
-            <label for="comment">Commento</label>
-          </span>
+            <span class="p-float-label">
+              <InputText class="inputtext" id="cf" v-model="cf" />
+              <label for="cf">C.F. ricevente</label>
+            </span>
 
-        </div>
+            <span class="p-float-label">
+              <InputText class="inputtext" id="title" v-model="titolo" />
+              <label for="title">Titolo</label>
+            </span>
 
-        <div style="text-align: center; width: 100%; margin: 0; padding: 0;">
-          <FileUpload
-            mode="basic"
-            :auto="false"
-            :customUpload="true"
-            :maxFileSize="10000000000000"
-            @uploader="uploadFile($event)"
-            chooseLabel="Scegli file"
-            style="
-              display: flex;
-              flex-wrap: nowrap;
-              align-items: center;
-              text-align: center;
-              width: 80%;
-              height: 10%;
-              border-radius: 50px;
-              font-size: 1.3em;
-              cursor: pointer;
-              transition: 0.3s;
-              background-color: var(--blue-primary);
-              color: white;
-              padding: 1em;
-              margin: 0;
-              margin-top: 1.5em;
-            "
-          />
+            <span class="p-float-label">
+              <InputText class="inputtext" id="comment" v-model="comment" />
+              <label for="comment">Commento</label>
+            </span>
 
-        </div>
+          </div>
 
-        <button  id="Home" @click="$router.push('homepage')">
-          <img src="/img/home.png" alt="share image" />
-          Home
-        </button>
+          <div style="text-align: center; width: 100%; margin: 0; padding: 0;">
+            <FileUpload
+              mode="basic"
+              :auto="false"
+              :customUpload="true"
+              :maxFileSize="10000000000000"
+              @uploader="uploadFile($event)"
+              chooseLabel="Scegli file"
+              style="
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                text-align: center;
+                width: 80%;
+                height: 10%;
+                border-radius: 50px;
+                font-size: 1.3em;
+                cursor: pointer;
+                transition: 0.3s;
+                background-color: var(--blue-primary);
+                color: white;
+                padding: 1em;
+                margin: 0;
+                margin-top: 1.5em;
+              "
+            />
 
-      </template>
-    </Card>
+          </div>
+
+          <button  id="Home" @click="$router.push('homepage')">
+            <img src="/img/home.png" alt="share image" />
+            Home
+          </button>
+
+        </template>
+      </Card>
+    </div>
   </div>
-</div>
 </template>
 
 
 <style scoped>
 
-#app{
-  background-color: blueviolet;
-
+#background{
+  display: flex;
+  flex-direction: column;
+  background-image: url("../assets/choosebackgroundmobile.png");
+  background: cover;
+  background-size: 100%;
+  background-repeat:no-repeat;
+  background-position-x: left ;
+  height: 100vh;
 }
 
 #container {
@@ -109,7 +119,14 @@ let titolo = ref("");
   width:500px;
   padding: 0;
   margin: 50px auto;
+  
 }
+
+.logo{
+  margin: 20px auto;
+  border-radius: 40px;
+}
+
 
 .divinputs { 
   margin: 0;
@@ -153,16 +170,7 @@ span label {
   background-color: var(--blue-hover);
 }
 
-#background{
-  display: flex;
-  flex-direction: column;
-  background-image: url("../assets/choosebackgroundmobile.png");
-  background: cover;
-  background-size: 100%;
-  background-repeat:no-repeat;
-  background-position-x: left ;
-  height: 100vh;
-}
+
 @media (min-width: 800px){  /* mobilefirst */
             #container{
               margin: 50px;
@@ -176,6 +184,10 @@ span label {
               background-repeat: no-repeat;
               height: 100vh;
             }
+            .logo{
+
+            }
+
 
 
         }
