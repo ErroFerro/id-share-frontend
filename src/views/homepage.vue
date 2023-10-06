@@ -24,12 +24,9 @@ function redirectToOAuth() {
 
 <template>
   <div id="background">
-
-    <!-- <Image src="/img/logo.png" alt="Image" width="180" /> -->
     <img class="logo" src="/img/logo.png" alt="Image"   />
     
     <div id="container">
-
       <Card style="border-radius: 25px;" >
         
         <template #title class="titoli">
@@ -79,19 +76,10 @@ function redirectToOAuth() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:500px;
+  width:300px;
   padding: 0;
   margin:0 auto;
-  height: 650px;
-
-/*Card piccola */
-  /* display: flex;
-  justify-content: left;
-  align-items: center;
-  padding: 0;
-  width: 325px;
-  height: 370px;
-  margin-bottom: 20px; */
+  height: 500px;
 }
 
 hr {
@@ -107,14 +95,12 @@ hr {
 #Share:hover, #Login:hover  {
   background-color: var(--blue-hover);
 }
-SpidBtn{
-  margin-top: 5%;
-}
+
 
 h1 {
   color: var(--blue-secondary);
   /* font-size: 1.5em; card piccola */
-  font-size: 2.5em; /*grande */
+  font-size: 1.2em; /*grande */
   font-weight: 700;
   text-align: center;
   padding: 0;
@@ -126,7 +112,7 @@ h4 {
   color: var(--blue-secondary);
   text-align: center;
   margin-top: 8%;
-  font-size: 1.5em; /** card grande */
+  font-size: 0.8em; /** card grande */
   /*font-size: 0.8em; /** card piccola */
   padding: 0;
 }
@@ -134,10 +120,48 @@ h4 {
 
 @media (min-width: 800px){  /* mobilefirst */
 
+  #container{
+    margin-left: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0;
+    width: 325px;
+    height: 400px;
+    margin-bottom: 20px;
+  }
+  
+  #background{
+    display: flex;
+    flex-direction: column;
+    background-image: url("../assets/choosebackground.png");
+    background: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #spid-button{
+    margin-top: 100%;
+  }
+  
+  h4{
+      font-size: 0.8em;
+  }
+  h1{
+    color: var(--blue-secondary);
+    font-size: 1.5em;
+  }
+  .logo{
+    width: 10em;
+  }
+
+}
+
+
+@media (min-width:800px){  /* mobilefirst */
             #container{
               margin-left: 20px;
             }
-            
             #background{
               display: flex;
               flex-direction: column;
@@ -147,18 +171,20 @@ h4 {
               background-repeat: no-repeat;
               height: 100vh;
             }
-            #spid-button{
-              margin-top: 100%;
-            }
 
         }
-@media (max-height:800px){
+
+
+@media (max-height:500px){
   .logo{
     display: none;
   }
   #background{
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
   }
   #container{
     margin: 0;

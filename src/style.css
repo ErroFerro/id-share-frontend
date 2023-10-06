@@ -30,10 +30,10 @@ button {
   text-align: center;
   margin-top: 5%;
   width: 90%;
-  height: 20%;
+  height: 50%;
   border: 1px solid transparent;
   border-radius: 25px;
-  font-size: 1.3em;
+  font-size: 1em;
   cursor: pointer;
   transition: 0.3s;
   color: white;
@@ -41,11 +41,12 @@ button {
 
 button img {
   border-radius: 25px;
-  width: 15%;
+  width: 20%;
   margin-left: 5%;
   padding: 10px;
   margin-right: 5%;
 }
+
 
 .titoli {
   color: var(--blue-secondary);

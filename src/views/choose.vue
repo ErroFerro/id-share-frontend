@@ -12,21 +12,18 @@ let titolo = ref("");
 </script>
 
 <template >
-
   <div id="background">
-
-      <img class="logo" src="/img/logo.png" alt="Image" width="250"  />
-
-  
+    <img class="logo" src="/img/logo.png" alt="Image" width="250"  />
+    
     <div id="container">
-      <Card style="border-radius: 25px; height: 650px;"  >
+      <Card style="border-radius: 25px;"  >
+        
         <template #title class="titoli">
           <h1 >UPLOAD & SHARE</h1>
         </template>
 
         <template #content>
             <div class="divinputs">  
-
               <span class="p-float-label">
                 <InputText class="inputtext" id="emailto" v-model="emailto" />
                 <label for="emailto">Email ricevente</label>
@@ -42,7 +39,7 @@ let titolo = ref("");
                 <label for="cf">C.F. ricevente</label>
               </span>
 
-              <span class="p-float-label">
+              <!-- <span class="p-float-label">
                 <InputText class="inputtext" id="title" v-model="titolo" />
                 <label for="title">Titolo</label>
               </span>
@@ -50,11 +47,11 @@ let titolo = ref("");
               <span class="p-float-label">
                 <InputText class="inputtext" id="comment" v-model="comment" />
                 <label for="comment">Commento</label>
-              </span>
+              </span> -->
 
             </div>
 
-            <div style="text-align: center; width: 100%; margin: 0; padding: 0;">
+            <div id="divfileupload">
               <FileUpload
                 mode="basic"
                 :auto="false"
@@ -67,27 +64,25 @@ let titolo = ref("");
                   flex-wrap: nowrap;
                   align-items: center;
                   text-align: center;
-                  width: 80%;
-                  height: 10%;
+                  width:100%;
+                  height: 100%;
                   border-radius: 50px;
                   font-size: 1.3em;
                   cursor: pointer;
                   transition: 0.3s;
                   background-color: var(--blue-primary);
                   color: white;
-                  padding: 1em;
-                  margin: 1.5em auto;
+                  /* padding: 1em; */
+                  margin: 1.2em 0;
                 "
               />
-
             </div>
-
-            <hr />
-
+            
             <button id="Home" @click="$router.push('homepage')">
               <img src="/img/home.png" alt="share image" />
               Home
             </button>
+
         </template>
       </Card>
     </div>
@@ -96,7 +91,6 @@ let titolo = ref("");
 
 
 <style scoped>
-
 #background{
   display: flex;
   flex-direction: column;
@@ -106,14 +100,15 @@ let titolo = ref("");
 }
 
 #container {
+/*Card grande */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:500px;
-  height: 650px;
+  width:300px;
   padding: 0;
   margin:0 auto;
+  height: 500px;
 }
 
 
@@ -122,10 +117,17 @@ let titolo = ref("");
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
-  height: 300px;
+  height: 200px;
+  width: 90%;
   align-items: center;
 } 
+
+#divfileupload{
+  
+  width:90%;
+  height: 100%;
+  padding: 0;
+}
 .inputtext {
   border: solid var(--blue-primary) 2px;
   border-radius: 50px;
@@ -150,42 +152,50 @@ span label {
   margin: 5px;
 }
 
+
+
 #Home {
   background-color: var(--blue-secondary);
-
 }
+
 
 #Home:hover {
   background-color: var(--blue-hover);
 }
 
+
 h1 {
   color: var(--blue-secondary);
-  font-size: 2em;
+  /* font-size: 1.5em; card piccola */
+  font-size: 1.2em; /*grande */
+  font-weight: 700;
   text-align: center;
-  margin-top: 20px;
+  padding: 0;
+  margin: 0;
+  margin-top: 10%;
 }
 
 
 
+@media (min-width:800px){  /* mobilefirst */
+  #container{
+    margin-left: 20px;
+  }
+  #background{
+    display: flex;
+    flex-direction: column;
+    background-image: url("../assets/choosebackground.png");
+    background: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  .logo{
+  width: 10em;
+  }
+}
 
-@media (min-width:1050px){  /* mobilefirst */
-            #container{
-              margin-left: 20px;
-            }
-            #background{
-              display: flex;
-              flex-direction: column;
-              background-image: url("../assets/choosebackground.png");
-              background: cover;
-              background-size: cover;
-              background-repeat: no-repeat;
-              height: 100vh;
-            }
-
-        }
-
-        @media (max-height:800px){
+@media (max-height:500px){
   .logo{
     display: none;
   }
@@ -194,7 +204,6 @@ h1 {
     align-items: center;
     background-size: cover;
     background-repeat: no-repeat;
-    
   }
   #container{
     margin: 0;
