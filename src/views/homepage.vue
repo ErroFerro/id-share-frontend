@@ -2,6 +2,16 @@
 import SpidBtn from "../components/SpidBtn.vue";
 import Card from 'primevue/card';
 
+//TODO
+/**
+ * gesitre margine di spidbutton, mettere margintop5% e levarlo da style.css
+ * scegliere se fare card piccola e grande
+ * rendere card responsive
+ * controllare bene media query
+ */
+
+
+
 // ESEMPIO IN JAVASCRIPT
 // import router from '../router';
 // router.push("/file.vue")
@@ -16,15 +26,15 @@ function redirectToOAuth() {
   <div id="background">
 
     <!-- <Image src="/img/logo.png" alt="Image" width="180" /> -->
-    <img class="logo" src="/img/logo.png" alt="Image" width="250"  />
+    <img class="logo" src="/img/logo.png" alt="Image"   />
     
     <div id="container">
 
-      <Card style="border-radius: 25px; height: 650px;" >
+      <Card style="border-radius: 25px;" >
         
         <template #title class="titoli">
             <h1 style="margin-bottom: 0px">IBE SHARING</h1>
-            <h3>Mobile Service</h3>
+            <h4>Mobile Service</h4>
         </template>
         
         <template #content>
@@ -45,7 +55,7 @@ function redirectToOAuth() {
             TEST FILEVIEWER
           </button> -->
 
-          <SpidBtn />
+          <SpidBtn/>
 
         </template>
          
@@ -59,15 +69,12 @@ function redirectToOAuth() {
   display: flex;
   flex-direction: column;
   background-image: url("../assets/choosebackgroundmobile.png");
-  background: cover;
-  background-size: 100%;
-  background-repeat:no-repeat;
-  background-position-x: left ;
   height: 100vh;
+  width: 100vw;
 }
 
 #container {
-
+/*Card grande */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,58 +82,60 @@ function redirectToOAuth() {
   width:500px;
   padding: 0;
   margin:0 auto;
-  
+  height: 650px;
 
-  /* width: 415px;
-  margin: 20px auto;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+/*Card piccola */
+  /* display: flex;
+  justify-content: left;
   align-items: center;
-  justify-content: center; */
+  padding: 0;
+  width: 325px;
+  height: 370px;
+  margin-bottom: 20px; */
 }
-
 
 hr {
-  margin: 10% 1% 5% 1%;
+  margin: 10% 1% 10% 1%;
 }
+
 #Share {
   background-color: var(--blue-primary);
 }
-#Share:hover {
-  background-color: var(--blue-hover);
-}
-
 #Login {
   background-color: var(--blue-secondary);
 }
-#Login:hover {
+#Share:hover, #Login:hover  {
   background-color: var(--blue-hover);
+}
+SpidBtn{
+  margin-top: 5%;
 }
 
 h1 {
   color: var(--blue-secondary);
-  font-size: 3em;
+  /* font-size: 1.5em; card piccola */
+  font-size: 2.5em; /*grande */
   font-weight: 700;
   text-align: center;
-
+  padding: 0;
+  margin: 0;
+  margin-top: 10%;
 }
-h3 {
+
+h4 {
   color: var(--blue-secondary);
   text-align: center;
-  padding-top: 3px;
+  margin-top: 8%;
+  font-size: 1.5em; /** card grande */
+  /*font-size: 0.8em; /** card piccola */
+  padding: 0;
 }
 
-.logo{   /** si puo mettere in style.css? */
-  margin: 20px auto;
-  border-radius: 40px;
-}
 
-
-@media (min-width: 1050px){  /* mobilefirst */
+@media (min-width: 800px){  /* mobilefirst */
 
             #container{
-              margin: 50px;
+              margin-left: 20px;
             }
             
             #background{
@@ -138,6 +147,22 @@ h3 {
               background-repeat: no-repeat;
               height: 100vh;
             }
+            #spid-button{
+              margin-top: 100%;
+            }
 
         }
+@media (max-height:800px){
+  .logo{
+    display: none;
+  }
+  #background{
+    justify-content: center;
+    align-items: center;
+  }
+  #container{
+    margin: 0;
+  }
+}
+
 </style>

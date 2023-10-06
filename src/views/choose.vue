@@ -101,11 +101,8 @@ let titolo = ref("");
   display: flex;
   flex-direction: column;
   background-image: url("../assets/choosebackgroundmobile.png");
-  background: cover;
-  background-size: 100%;
-  background-repeat:no-repeat;
-  background-position-x: left ;
   height: 100vh;
+  width: 100vw;
 }
 
 #container {
@@ -114,14 +111,11 @@ let titolo = ref("");
   justify-content: center;
   align-items: center;
   width:500px;
+  height: 650px;
   padding: 0;
-  margin: 50px auto;
-  
+  margin:0 auto;
 }
-.logo{
-  margin: 20px auto;
-  border-radius: 40px;
-}
+
 
 .divinputs { 
   margin: 0;
@@ -177,7 +171,7 @@ h1 {
 
 @media (min-width:1050px){  /* mobilefirst */
             #container{
-              margin: 50px;
+              margin-left: 20px;
             }
             #background{
               display: flex;
@@ -190,5 +184,21 @@ h1 {
             }
 
         }
+
+        @media (max-height:800px){
+  .logo{
+    display: none;
+  }
+  #background{
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+  }
+  #container{
+    margin: 0;
+  }
+}
 
 </style>
