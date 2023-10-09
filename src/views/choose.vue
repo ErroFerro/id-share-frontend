@@ -1,16 +1,103 @@
 <script setup>
-import { ref } from "vue";
-import Card from 'primevue/card';
+import { ref, onMounted } from "vue";
+import { Buffer } from "buffer";
+import { saveAs } from "file-saver";
+globalThis.Buffer = Buffer;
+import CryptoJS from "crypto-js";
+import init, {
+  bsw_encrypt_attributes,
+  bsw_decrypt,
+  CpAbeCiphertext,
+} from "../ibe/pkg/rabe_wasm";
+import DownloadFile from "../components/DownloadFile.vue";
 
+let pk = ref("");
 let comment = ref("");
 let emailfrom = ref("");
 let emailto = ref("");
 let cf = ref("");
 let titolo = ref("");
 
-//creare un bottone che solo dopo aver scelto il file lo carica da qualche parte
-</script>
+onMounted(async () => {
+  await init();
+  getPk();
+});
 
+async function getPk() {
+  let result = await fetch("http://localhost:3000/api/v1/key/pk");
+  let val = await result.json();
+  pk.value = val.data.pk;
+}
+
+async function uploadFile(event) {
+  try {
+    const file = event.files[0];
+
+    let metadata = {
+      key: CryptoJS.lib.WordArray.random(32).toString(),
+      fileName: file.name,
+      sender: emailfrom.value,
+      receiver: emailto.value,
+    };
+
+    const bufferMetadata = Buffer.from(JSON.stringify(metadata));
+
+    const reader = new FileReader();
+    reader.onload = async (res) => {
+      const arrayBuffer = res.target.result;
+
+      // Generate key of length 32, used to encrypt the file
+      const base64data = arrayBufferToBase64(arrayBuffer);
+      const encrypted = CryptoJS.AES.encrypt(base64data, metadata.key);
+      const encryptedString = encrypted.toString();
+
+      // Encrypt the metadata
+      bsw_encrypt_attributes(pk.value, bufferMetadata, [
+        metadata.receiver,
+      ]).then(async (ct_cp) => {
+        let metadataCiphertext = {
+          policy: ct_cp.get_policy(),
+          policy_language: ct_cp.get_policy_language(),
+          c: ct_cp.get_c(),
+          c_p: ct_cp.get_c_p(),
+          c_y: ct_cp.get_c_y(),
+          ct: ct_cp.get_ct(),
+        };
+
+        const formData = new FormData();
+
+        formData.append("json", JSON.stringify(metadataCiphertext));
+        formData.append("data", encryptedString);
+        let response = await fetch("http://localhost:3000/api/v1/file/upload", {
+          method: "POST",
+          body: formData,
+        });
+        let val = await response.json();
+        console.log(val);
+
+        if (val.status === "success") {
+          console.log("File uploaded successfully!");
+        } else {
+          console.log("File couldn't be uploaded!");
+        }
+      });
+    };
+
+    reader.readAsArrayBuffer(file);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function arrayBufferToBase64(arrayBuffer) {
+  const uint8Array = new Uint8Array(arrayBuffer);
+  let binaryString = "";
+  for (let i = 0; i < uint8Array.length; i++) {
+    binaryString += String.fromCharCode(uint8Array[i]);
+  }
+  return btoa(binaryString);
+}
+</script>
 <template >
   <div id="background">
     <img class="logo" src="/img/logo.png" alt="Image" width="250"  />
@@ -77,7 +164,7 @@ let titolo = ref("");
                 "
               />
             </div>
-            
+            <DownloadFile/>
             <button id="Home" @click="$router.push('homepage')">
               <img src="/img/home.png" alt="share image" />
               Home
