@@ -16,8 +16,8 @@ export default createRouter({
       component: () => import("../views/choose.vue"),
     },
     {
-      path: "/fileviewer",
-      component: () => import("../views/fileviewer.vue"),
+      path: "/downloader",
+      component: () => import("../views/downloader.vue"),
     },
   ],
 });

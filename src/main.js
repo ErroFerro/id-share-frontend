@@ -11,12 +11,16 @@ import Image from 'primevue/image';
 import InputText from 'primevue/inputtext';
 import FileUpload from 'primevue/fileupload';
 import Card from 'primevue/card';
+import InputMask from 'primevue/inputmask';
+
+
 
 import 'primevue/resources/themes/bootstrap4-light-blue/theme.css';
 
 
 const app = createApp(App);
 
+app.component("InputMask",InputMask);
 app.component("Card",Card);
 app.component("DataTable",DataTable);
 app.component("Column",Column);

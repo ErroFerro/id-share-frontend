@@ -9,22 +9,27 @@ import init, {
   bsw_decrypt,
   CpAbeCiphertext,
 } from "../ibe/pkg/rabe_wasm";
+import DownloadFile from "../components/DownloadFile.vue";
 
 let pk = ref("");
+let sk = ref("");
 let emailfrom = ref("");
-let emailto = ref("");
-let cf = ref("");
+let fileCode = ref("");
 
 onMounted(async () => {
   await init();
-  getPk();
+  getSk();
 });
 
-async function getPk() {
-  let result = await fetch("http://localhost:3000/api/v1/key/pk");
-  let val = await result.json();
-  pk.value = val.data.pk;
-}
+/**
+ * TODO:
+ * +
+ * aggiungere il messaggio per ogni cosa
+ * implementare spid
+ * sistemare stile
+ * 
+ */
+
 
 async function uploadFile(event) {
   try {
@@ -34,7 +39,7 @@ async function uploadFile(event) {
       key: CryptoJS.lib.WordArray.random(32).toString(),
       fileName: file.name,
       sender: emailfrom.value,
-      receiver: emailto.value,
+      receiver: fileCode.value,
     };
 
     const bufferMetadata = Buffer.from(JSON.stringify(metadata));
@@ -94,6 +99,15 @@ function arrayBufferToBase64(arrayBuffer) {
   }
   return btoa(binaryString);
 }
+
+async function getSk() {
+
+let result = await fetch("http://localhost:3000/api/v1/key/sk");
+let val = await result.json();
+sk.value = val.data.sk;
+console.log(sk.value);
+}
+
 </script>
 <template >
   <div id="background">
@@ -103,65 +117,22 @@ function arrayBufferToBase64(arrayBuffer) {
       <Card style="border-radius: 25px;"  >
         
         <template #title class="titoli">
-          <h1 >UPLOAD & SHARE</h1>
+            <h1 >SCARICA</h1>
+            <h1 >IL TUO FILE</h1>
         </template>
 
         <template #content>
             <div class="divinputs">  
               <span class="p-float-label">
-                <InputText class="inputtext" id="emailto" v-model="emailto" />
-                <label for="emailto">Email ricevente</label>
+                <InputText class="inputtext" id="fileCode" v-model="fileCode" />
+                <!-- <InputMask id="basic" v-model="value" mask="99-999999" placeholder="99-999999" /> -->
+                <label for="fileCode">Codice</label>
               </span>
-
-              <span class="p-float-label">
-                <InputText class="inputtext" id="emailfrom" v-model="emailfrom" />
-                <label for="emailfrom">La tua email</label>
-              </span>
-
-              <span class="p-float-label">
-                <InputText class="inputtext" id="cf" v-model="cf" />
-                <label for="cf">C.F. ricevente</label>
-              </span>
-
-              <!-- <span class="p-float-label">
-                <InputText class="inputtext" id="title" v-model="titolo" />
-                <label for="title">Titolo</label>
-              </span>
-
-              <span class="p-float-label">
-                <InputText class="inputtext" id="comment" v-model="comment" />
-                <label for="comment">Commento</label>
-              </span> -->
 
             </div>
 
-            <div id="divfileupload">
-              <FileUpload
-                mode="basic"
-                :auto="false"
-                :customUpload="true"
-                :maxFileSize="10000000000000"
-                @uploader="uploadFile($event)"
-                chooseLabel="Scegli file"
-                style="
-                  display: flex;
-                  flex-wrap: nowrap;
-                  align-items: center;
-                  text-align: center;
-                  width:100%;
-                  height: 100%;
-                  border-radius: 50px;
-                  font-size: 1.3em;
-                  cursor: pointer;
-                  transition: 0.3s;
-                  background-color: var(--blue-primary);
-                  color: white;
-                  /* padding: 1em; */
-                  margin: 1.2em 0;
-                "
-              />
-            </div>
-            <button id="Home" @click="$router.push('homepage')">
+            <DownloadFile v-bind:fileCode="fileCode" v-bind:sk="sk" :disabled="fileCode.length!=10"   /> <!-- :disabled="fileCode.length!=10" provare senza : -->
+            <button id="Home" @click="$router.push('homepage')" >
               <img src="/img/home.png" alt="share image" />
               Home
             </button>

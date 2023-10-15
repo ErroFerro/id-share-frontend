@@ -8,27 +8,24 @@ import init, {
   CpAbeCiphertext,
 } from "../ibe/pkg/rabe_wasm";
 
-const sk = ref("");
 // const key = ref("");
 
 onMounted(async () => {
   await init();
-  getSk();
 });
 
-async function getSk() {
-  let result = await fetch("http://localhost:3000/api/v1/key/sk");
-  let val = await result.json();
-  sk.value = val.data.sk;
-}
 
-const fileID = "LIDVtFMlIM";
+
+const props = defineProps(['fileCode','sk'])
 
 async function download() {
   try {
+    console.log(props.fileCode)
     const res = await fetch(
-      "http://localhost:3000/api/v1/file/download/" + fileID
+      "http://localhost:3000/api/v1/file/download/" + props.fileCode
     );
+    
+    console
     const val = await res.json();
 
     let fileContent = await JSON.parse(val.data);
@@ -42,7 +39,7 @@ async function download() {
       metadataCiphertext.c_y,
       new Uint8Array(Object.values(metadataCiphertext.ct))
     );
-    bsw_decrypt(sk.value, ct_cp)
+    bsw_decrypt(props.sk, ct_cp)
       .then((r) => {
         const metadata = JSON.parse(new TextDecoder().decode(r));
         const key = metadata.key;
@@ -68,61 +65,25 @@ async function download() {
     console.log(err);
   }
 }
-
-// async function download() {
-//   try {
-//     const res = await fetch(
-//       "http://localhost:3000/api/v1/file/download/6DNNCaTmm2"
-//     );
-//     const val = await res.json();
-
-//     let fileContent = await JSON.parse(val.data);
-//     let metadataCiphertext = fileContent.metadata;
-
-//     // Extrapolates the key and saves it in key.value
-//     decrypt(JSON.parse(metadataCiphertext));
-
-//     const fileData = fileContent.data;
-
-//     var decrypted = CryptoJS.AES.decrypt(fileData, key.value);
-//     const decryptedString = decrypted.toString(CryptoJS.enc.Utf8);
-
-//     const binaryString = atob(decryptedString);
-//     const uint8Array = new Uint8Array(binaryString.length);
-//     for (let i = 0; i < binaryString.length; i++) {
-//       uint8Array[i] = binaryString.charCodeAt(i);
-//     }
-
-//     const blob = new Blob([uint8Array]);
-//     saveAs(blob, "test.json");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-// async function decrypt(metadata) {
-//   const ct_cp = new CpAbeCiphertext(
-//     metadata.policy,
-//     metadata.policy_language,
-//     metadata.c,
-//     metadata.c_p,
-//     metadata.c_y,
-//     new Uint8Array(Object.values(metadata.ct))
-//   );
-//   bsw_decrypt(sk.value, ct_cp)
-//     .then((r) => {
-//       const metadata = new TextDecoder().decode(r);
-//       key.value = JSON.parse(metadata).key;
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-// }
 </script>
 <template>
-  <button id="Download" @click="download()" style="background-color: red">
+  <button id="Download" @click="download()"  >
     <img src="/img/home.png" alt="share image" />
     Download
   </button>
 </template>
-<style></style>
+<style>
+#Download {
+  background-color: var(--blue-secondary);
+}
+
+
+#Download:hover {
+  background-color: var(--blue-hover);
+}
+#Download:disabled{
+  background-color: #607795;
+}
+
+
+</style>
